@@ -42,29 +42,34 @@ htmlcov/
 .nox/
 .coverage
 .coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py.cover
-.hypothesis/
-.pytest_cache/
-cover/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+.env.*
+.venv.*
+*.sqlite3
+.DS_Store
+*.egg-info/
+.cache/
 *.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
+*.wav
+*.mp3
+*.ogg
+*.m4a
+*.flac
+*.tmp
+*.bak
+.idea/
+.vscode/
+streamlit/
+linked_pipes.cpython-*.pyc
+*.ipynb_checkpoints/
+*.swp
+*.swo
+*.~
 # Scrapy stuff:
 .scrapy
 
