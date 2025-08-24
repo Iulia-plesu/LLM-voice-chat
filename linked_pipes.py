@@ -12,9 +12,23 @@ def run_chat():
     if "messages" not in st.session_state:
         st.session_state.messages = [{"role": "assistant", "content": "Let's start chatting! 👇"}]
         
-    for message in st.session_state.messages:
+    # Use a local variable for messages to avoid repeated session state lookups
+    messages = st.session_state.get("messages", [])
+
+    # Parallel rendering using ThreadPoolExecutor for efficiency if many messages
+    from concurrent.futures import ThreadPoolExecutor
+
+    def render_message(message):
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
+
+    if len(messages) > 4:
+        # Use up to 4 threads for parallel rendering if many messages
+        with ThreadPoolExecutor(max_workers=4) as executor:
+            list(executor.map(render_message, messages))
+    else:
+        for message in messages:
+            render_message(message)
    
     if prompt := st.chat_input("Ask me anything..."):
         st.session_state.messages.append({"role": "user", "content": prompt})
