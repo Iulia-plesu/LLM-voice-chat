@@ -6,17 +6,12 @@ import numpy as np
 
 def run_chat():
     if "pipe" not in st.session_state:
-        st.session_state.pipe = pipeline("text-generation", model="Qwen/Qwen3-4B-Thinking-2507")
+        st.session_state.pipe = pipeline("text-generation", model="Qwen/Qwen3-1.7B")
     if "pipe2" not in st.session_state:
         st.session_state.pipe2 = pipeline("text-to-speech", model="facebook/mms-tts-eng")
     if "messages" not in st.session_state:
         st.session_state.messages = [{"role": "assistant", "content": "Let's start chatting! 👇"}]
-   
-    if st.button("Clear chat"):
-        st.session_state.clear()
-        st.session_state.messages = [{"role": "assistant", "content": "Let's start chatting! 👇"}]
-        st.stop()
-   
+        
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
